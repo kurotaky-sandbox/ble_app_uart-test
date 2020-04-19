@@ -134,7 +134,7 @@ int statcon(void);
 int ccount;
 int nrf_ble_gatt_att_mtu_size = 134;// •ÏX‚È‚¯‚ê‚Î‚±‚ÌƒTƒCƒYBƒyƒCƒ[ƒh‚Í‚P‚S‚RƒoƒCƒg‚É‚È‚éB
 //
-extern	void hal_ppi_adc_init(void);
+extern void hal_ppi_adc_init(void);
 extern ret_code_t hal_send_timer_init(void);
 
 
@@ -444,6 +444,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             APP_ERROR_CHECK(err_code);
             break;
 
+/*
         case BLE_GAP_EVT_DATA_LENGTH_UPDATE_REQUEST:
         {
             ble_gap_data_length_params_t dl_params;
@@ -453,7 +454,7 @@ static void ble_evt_handler(ble_evt_t const * p_ble_evt, void * p_context)
             err_code = sd_ble_gap_data_length_update(p_ble_evt->evt.gap_evt.conn_handle, &dl_params, NULL);
             APP_ERROR_CHECK(err_code);
         } break;
-
+*/
 
         case BLE_GATTS_EVT_SYS_ATTR_MISSING:
             // No system attributes have been stored.
@@ -641,7 +642,7 @@ static int rcv_uart_read_p;		// ƒŠƒ“ƒOƒoƒbƒtƒ@[‚©‚çŽŸ‚É�
 void uart_event_handle(app_uart_evt_t * p_event)
 {
 //    static uint8_t data_array[BLE_NUS_MAX_DATA_LEN];
-//    static uint8_t index = 0;
+    static uint8_t index = 0;
 //    uint32_t       err_code;
     static uint8_t data_array[4];// ‚Æ‚è‚ ‚¦‚¸‚SƒoƒCƒgB
 
@@ -859,7 +860,7 @@ nrf_gpio_pin_set(9);
 nrf_gpio_cfg_output(20);// ble_evt_handler ‚ÉABLE_GATTS_EVT_HVN_TX_COMPLETE@‚Ì’Ê’m‚ª—ˆ‚½‚Æ‚«‚k‚‚—B
 nrf_gpio_pin_set(20);
 //
-	dbgmon(0);// ƒ\ƒtƒgƒfƒoƒCƒX‚ð‹N“®‚·‚é‘O‚Éˆê“xƒ‚ƒjƒ^‚ð‘–‚ç‚¹‚éBq (enter) ‚Å–ß‚éB
+//	dbgmon(0);// ƒ\ƒtƒgƒfƒoƒCƒX‚ð‹N“®‚·‚é‘O‚Éˆê“xƒ‚ƒjƒ^‚ð‘–‚ç‚¹‚éBq (enter) ‚Å–ß‚éB
 //power_management_init();
 
     ble_stack_init();
@@ -888,9 +889,9 @@ nrf_gpio_pin_set(20);
 	c = getcon();
 	putcon(c);
 //
-	hal_ppi_adc_init();
-	hal_send_timer_init();
-	dbgmon(0);// q (enter) ‚Å–ß‚Á‚Ä‚­‚éB
+//	hal_ppi_adc_init();
+//	hal_send_timer_init();
+//	dbgmon(0);// q (enter) ‚Å–ß‚Á‚Ä‚­‚éB
 
     // Enter main loop.
     printf("Enter main loop.");
